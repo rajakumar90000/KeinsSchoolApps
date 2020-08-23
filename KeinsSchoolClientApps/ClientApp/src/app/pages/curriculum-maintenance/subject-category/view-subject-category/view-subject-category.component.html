@@ -1,0 +1,37 @@
+<section *ngIf="currentSubjectCategory">
+  <mat-chip-list selectable="false">
+    <h1>Subject Category: {{ currentSubjectCategory.name }}
+      <mat-chip *ngIf="currentSubjectCategory.active === 1" disableRipple="true" selectable="false" color="primary"
+        selected>
+        Active
+      </mat-chip>
+      <mat-chip *ngIf="currentSubjectCategory.active === 0" selectable="false" color="primary" selected>Inactive
+      </mat-chip>
+    </h1>
+  </mat-chip-list>
+</section>
+<section>
+  <h1>Description</h1>
+  <p>{{ currentSubjectCategory.description }}</p>
+</section>
+<h1>Subjects/Units</h1>
+<section>
+    <button *ngIf="!isOpenNewSubjectForm" (click)="isOpenNewSubjectForm = true" mat-raised-button type="button"
+      color="primary">Add Subject/Unit</button>
+    <button *ngIf="isOpenNewSubjectForm" (click)="closeNewSubjectForm()" mat-raised-button type="button"
+      color="warn">Cancel</button>
+    <section>
+      <app-create-unit (submitted)="onNewSubjectSubmitted($event)" [category]="currentSubjectCategory.id"
+        *ngIf="isOpenNewSubjectForm"></app-create-unit>
+    </section>
+</section>
+<section class="row" style="border: 1px">
+  <section class="col-lg-3" *ngFor="let unit of currentSubjectCategory?.units">
+    <mat-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon>label_important_outline</mat-icon>
+        <h3 matLine> {{ unit.name }}</h3>
+      </mat-list-item>
+    </mat-list>
+  </section>
+</section>

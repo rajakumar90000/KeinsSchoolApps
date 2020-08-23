@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <button (click)="toggleSideBar()" mat-mini-fab color='primary' type="button"><span
+      class="material-icons">{{ isSidebarOpen ? 'menu_open' : 'menu' }}</span>
+  </button>
+  <span>School Management System</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+  <app-user-profile></app-user-profile>
+</mat-toolbar>
+<div class="mat-app-background basic-container">
+  <app-sidebar>
+    <section class="container-fluid">
+      <router-outlet></router-outlet>
+    </section>
+  </app-sidebar>
+</div>
